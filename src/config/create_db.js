@@ -21,10 +21,10 @@ async function initializeDatabase() {
       id INT AUTO_INCREMENT PRIMARY KEY,
       kakao_id BIGINT NOT NULL UNIQUE,
       name VARCHAR(100) NOT NULL,
-      nickname VARCHAR(100) NOT NULL,
+      nickname VARCHAR(100),
       score BIGINT DEFAULT 0,
       achievements SET('achievement1', 'achievement2', 'achievement3'),
-      access_token VARCHAR(255) NOT NULL,
+      access_token VARCHAR(255),
       refresh_token VARCHAR(255),
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );

@@ -2,7 +2,8 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 
-const kakaoAuthRoutes = require('./src/kakaoAuth/routes/kakaoAuthRoutes');
+
+const kakaoAuthRoutes = require("./src/kakaoAuth/routes/kakaoAuthRoutes"); // 경로에 맞게 수정하세요
 //const userRoutes = require('./src/users/routes/userRoutes')
 
 require('dotenv').config();
@@ -14,6 +15,11 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], // 허용할 HTTP 메서드
     credentials: true, // 쿠키 인증 정보 허용
 }));
+
+app.use((req, res, next) => {
+    console.log(`Incoming request: ${req.method} ${req.url}`);
+    next();
+  });
 
 // Body-parser 설정
 app.use(express.json());

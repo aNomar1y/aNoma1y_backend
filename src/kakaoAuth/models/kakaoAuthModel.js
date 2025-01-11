@@ -4,19 +4,17 @@ require('dotenv').config();
 
 async function saveUser(userInfo) {
     console.log('Saving user info:', userInfo);
-    const { id, properties, access_token } = userInfo;
+    const { id, properties } = userInfo;
     const nickname = properties?.nickname || null;
 
     const query = `
-        INSERT INTO users (kakao_id, name, nickname, access_token)
-        VALUES (?, ?, ?, ?)
+        INSERT INTO users (kakao_id, name)
+        VALUES (?, ?)
         ON DUPLICATE KEY UPDATE
-        name = VALUES(name),
-        nickname = VALUES(nickname),
-        access_token = VALUES(access_token)
+        name = VALUES(name)
     `;
 
-    await pool.query(query, [id, nickname, nickname, access_token]);
+    await pool.query(query, [id, nickname]);
 }
 
 // 로그아웃 처리 (토큰 무효화)
@@ -42,6 +40,18 @@ async function saveRefreshToken(kakaoId, refreshToken) {
     return result;
 }
 
+// refresh token 저장
+async function saveAccessToken(kakaoId, accessToken) {
+    const query = `
+        UPDATE users
+        SET access_token = ?
+        WHERE kakao_id = ?
+    `;
+    const [result] = await pool.query(query, [accessToken, kakaoId]);
+    console.log('Saving access token:', result);
+    return result;
+}
+
 // model.js에 추가
 async function deleteRefreshToken(kakaoId) {
     const query = `
@@ -54,4 +64,4 @@ async function deleteRefreshToken(kakaoId) {
 
 
 
-module.exports = { saveUser, updateLogout, deleteUser, saveRefreshToken, deleteRefreshToken };
+module.exports = { saveAccessToken, saveUser, updateLogout, deleteUser, saveRefreshToken, deleteRefreshToken };

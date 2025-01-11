@@ -16,7 +16,12 @@ async function getToken(code) {
         });
         return response.data;
     } catch (error) {
-        console.error('Error fetching token:', error.message);
+        if (error.response) {
+            // 카카오 API에서 반환된 에러 응답 확인
+            console.error('Error response from Kakao:', error.response.data);
+        } else {
+            console.error('Error fetching token:', error.message);
+        }
         throw new Error('Failed to fetch token');
     }
 }
