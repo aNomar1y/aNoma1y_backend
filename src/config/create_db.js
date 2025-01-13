@@ -29,6 +29,14 @@ async function initializeDatabase() {
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
 
+    CREATE TABLE IF NOT EXISTS records (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      kakao_id BIGINT NOT NULL UNIQUE,
+      cctv_id INT NOT NULL,
+      anomaly_id VARCHAR(100),
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+
     `;
 
 try {

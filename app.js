@@ -4,7 +4,7 @@ require('dotenv').config();
 
 
 const kakaoAuthRoutes = require("./src/kakaoAuth/routes/kakaoAuthRoutes"); // 경로에 맞게 수정하세요
-//const userRoutes = require('./src/users/routes/userRoutes')
+const recordsRoutes = require("./src/records/routes/recordsRoutes")
 
 require('dotenv').config();
 
@@ -29,8 +29,8 @@ app.use(express.urlencoded({ extended: true }));
 // 카카오 로그인
 app.use('/auth/kakao', kakaoAuthRoutes);
 
-// //user 관리
-// app.use('/users', userRoutes);
+//records 관리
+app.use('/records', recordsRoutes);
 
 // // 정적 파일 제공 (사진 파일 접근 가능)
 // const uploadDir = path.resolve(__dirname, "src/uploads");
