@@ -17,7 +17,7 @@ exports.recordUserAnomaly = async (req, res) => {
 
 // 회원 별 전체 현상 기록
 exports.viewUserAnomaly = async (req, res) => {
-    const { kakao_id } = req.params;
+    const { kakao_id } = req.body;
 
     try {
         const rows = await viewUserAnomaly(kakao_id);

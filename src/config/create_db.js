@@ -31,7 +31,7 @@ async function initializeDatabase() {
 
     CREATE TABLE IF NOT EXISTS records (
       id INT AUTO_INCREMENT PRIMARY KEY,
-      kakao_id BIGINT NOT NULL UNIQUE,
+      kakao_id BIGINT NOT NULL,
       cctv_id INT NOT NULL,
       anomaly_id VARCHAR(100),
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP

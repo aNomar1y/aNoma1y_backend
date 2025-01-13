@@ -86,8 +86,6 @@ async function updateAccessTokenInDB(req, res) {
 
     try {
         // 여기에서 kakao_id는 사용자 인증 정보에서 추출해야 함
-        const kakaoId = req.user?.id || 'extracted_kakao_id'; // 사용자 인증 정보 기반으로 설정
-        console.log('req.user:', req.user);
         await saveAccessToken(kakaoId, accessToken);
         res.status(200).json({ message: 'Access token updated successfully' });
     } catch (error) {
