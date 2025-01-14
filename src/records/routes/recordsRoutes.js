@@ -9,6 +9,6 @@ router.use(express.json());
 
 router.post('/save-anomaly', recordUserAnomaly);
 
-router.get('/get-anomaly', viewUserAnomaly);
+router.get('/get-anomaly/:kakao_id', viewUserAnomaly);
 
 module.exports = router;

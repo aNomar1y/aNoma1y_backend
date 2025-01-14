@@ -3,7 +3,7 @@ require('dotenv').config();
 
 async function recordUserAnomaly(kakao_id, cctv_id, anomaly_id) {
     const query = `
-            INSERT INTO records (kakao_id, cctv_id, anomaly_id)
+            INSERT IGNORE INTO records (kakao_id, cctv_id, anomaly_id)
             VALUES (?, ?, ?)
             `;
 

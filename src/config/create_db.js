@@ -34,7 +34,8 @@ async function initializeDatabase() {
       kakao_id BIGINT NOT NULL,
       cctv_id INT NOT NULL,
       anomaly_id VARCHAR(100),
-      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      UNIQUE (kakao_id, anomaly_id)
     );
 
     `;

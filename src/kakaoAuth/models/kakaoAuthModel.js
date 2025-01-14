@@ -63,5 +63,13 @@ async function deleteRefreshToken(kakaoId) {
 }
 
 
+async function deleteRecords(kakaoId) {
+    const query = `
+        DELETE FROM records WHERE kakao_id = ?
+    `;
 
-module.exports = { saveAccessToken, saveUser, updateLogout, deleteUser, saveRefreshToken, deleteRefreshToken };
+    await pool.query(query, [kakaoId]);
+}
+
+
+module.exports = { deleteRecords, saveAccessToken, saveUser, updateLogout, deleteUser, saveRefreshToken, deleteRefreshToken };

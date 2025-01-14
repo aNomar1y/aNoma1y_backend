@@ -3,7 +3,7 @@ const querystring = require("querystring");
 
 
 const { getToken, getUserInfo, unlinkKakaoAccount } = require('../services/kakaoAuthService');
-const { saveUser, deleteUser, updateLogout, saveAccessToken, saveRefreshToken, deleteRefreshToken } = require('../models/kakaoAuthModel');
+const { saveUser, deleteUser, updateLogout, saveAccessToken, saveRefreshToken, deleteRefreshToken, deleteRecords } = require('../models/kakaoAuthModel');
 require('dotenv').config();
 
 async function handleKakaoCallback(req, res) {
@@ -70,6 +70,7 @@ async function deleteUserAccount(req, res) {
         console.log('deleteUser')
         await deleteRefreshToken(kakaoId);
         console.log('deleteRefreshToken')
+        await deleteRecords(kakaoId);
         res.status(200).json({ message: '회원탈퇴 성공' });
     } catch (err) {
         console.error('Error during account deletion:', err.message);

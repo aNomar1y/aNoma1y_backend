@@ -2,7 +2,7 @@ const axios = require('axios');
 
 const { recordUserAnomaly, viewUserAnomaly } = require('../models/recordsModel');
 
-// 퀴즈 맞춘 애들 메뉴 리스트
+// 현상 기록
 exports.recordUserAnomaly = async (req, res) => {
     const { kakao_id, cctv_id, anomaly_id } = req.body;
 
@@ -17,8 +17,8 @@ exports.recordUserAnomaly = async (req, res) => {
 
 // 회원 별 전체 현상 기록
 exports.viewUserAnomaly = async (req, res) => {
-    const kakao_id = req.query.kakao_id;
-    console.log(kakao_id)
+    const {kakao_id} = req.params;
+    console.log('viewuser kakaoid:', kakao_id)
     try {
         const rows = await viewUserAnomaly(kakao_id);
         res.json({ success: true, data: rows });
